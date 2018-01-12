@@ -249,8 +249,16 @@ public class Graph<V>
      */
     public String toString()
     {
-      for (ArrayList vertex: verteces) {
+      // String to store as we go
+      String str = new String();
 
+      for (ArrayList vertex: verteces) {
+        str.concat(vertex.toString() + ":");
+        for (ArrayList edge: edges) {
+          str.concat(" " + verteces.get(edge).toString() + ",");
+        }
+
+        // TODO: Add the return line character
       }
       return "";
     }

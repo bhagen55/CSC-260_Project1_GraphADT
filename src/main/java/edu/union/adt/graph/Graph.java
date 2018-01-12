@@ -104,16 +104,15 @@ public class Graph<V>
      * @param from the source vertex for the added edge
      * @param to the destination vertex for the added edge
      *
-     * TODO: Remove some processing time by finding indexOf first and saving it
      *
      */
     public void addEdge(V from, V to)
     {
       // Check if the from and to vertex exist. If not, add them.
-      if (vertices.indexOf(from) == -1) {
+      if (!vertices.contains(from)) {
         addVertex(from);
       }
-      if (vertices.indexOf(to) == -1) {
+      if (!vertices.contains(to)) {
         addVertex(to);
       }
 
@@ -137,7 +136,7 @@ public class Graph<V>
     public void addVertex(V vertex)
     {
       // Only attempt to add the object if it doesn't exist
-      if (vertices.indexOf(vertex) == -1) {
+      if (!vertices.contains(vertex)) {
         vertices.add(vertex);
         // Add a blank arraylist to the edges arraylist to hold this vertece's edges
         ArrayList<Integer> e = new ArrayList<Integer>();

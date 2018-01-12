@@ -36,8 +36,8 @@ public class Graph<V>
      */
     public Graph()
     {
-        vertices = new ArrayList();
-        edges = new ArrayList();
+      vertices = new ArrayList();
+      edges = new ArrayList();
     }
 
     /**
@@ -45,14 +45,14 @@ public class Graph<V>
      */
     public int numVertices()
     {
-        verticesSize = vertices.size();
-        edgesSize = edges.size();
-        if (verticesSize != edgesSize) {
-            throw new RuntimeException("Vertices has size " + verticesSize + " while Edges has size " + edgesSize);
-        }
-        else {
-            return verticesSize;
-        }
+      verticesSize = vertices.size();
+      edgesSize = edges.size();
+      if (verticesSize != edgesSize) {
+          throw new RuntimeException("Vertices has size " + verticesSize + " while Edges has size " + edgesSize);
+      }
+      else {
+          return verticesSize;
+      }
     }
 
     /**
@@ -62,11 +62,11 @@ public class Graph<V>
      */
     public int numEdges()
     {
-        private int totalEdges = 0;
-        for (ArrayList edge: edges) {
-          totalEdges = totalEdges + edges.size();
-        }
-        return totalEdges;
+      private int totalEdges = 0;
+      for (ArrayList edge: edges) {
+        totalEdges = totalEdges + edges.size();
+      }
+      return totalEdges;
     }
 
     /**
@@ -82,15 +82,15 @@ public class Graph<V>
      */
     public int degree(V vertex)
     {
-        // Check the vertex list for the object. Will return -1 if it does not exist
-        private objectIndex = vertices.indexOf(vertex);
-        if (objectIndex == -1) {
-          throw new RuntimeException("Vertex does not exist");
-        }
-        else {
-          // Finds the vertex's edges in the edges list and returns the size of it
-          return edges.get(objectIndex).size();
-        }
+      // Check the vertex list for the object. Will return -1 if it does not exist
+      private objectIndex = vertices.indexOf(vertex);
+      if (objectIndex == -1) {
+        throw new RuntimeException("Vertex does not exist");
+      }
+      else {
+        // Finds the vertex's edges in the edges list and returns the size of it
+        return edges.get(objectIndex).size();
+      }
     }
 
     /**
@@ -104,6 +104,7 @@ public class Graph<V>
      */
     public void addEdge(V from, V to)
     {
+
     }
 
     /**
@@ -115,6 +116,12 @@ public class Graph<V>
      */
     public void addVertex(V vertex)
     {
+      // Only attempt to add the object if it doesn't exist
+      if (vertices.indexOf(vertex) == -1) {
+        vertices.add(vertex);
+        // Add a blank arraylist to the edges arraylist to hold this vertece's edges
+        edges.add(ArrayList<int> e = new ArrayList())
+      }
     }
 
     /**

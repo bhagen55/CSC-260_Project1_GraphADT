@@ -1,5 +1,7 @@
 package edu.union.adt.graph;
 
+import java.util.ArrayList;
+
 /**
  * A graph that establishes connections (edges) between objects of
  * (parameterized) type V (vertices).  The edges are directed.  An
@@ -36,8 +38,8 @@ public class Graph<V>
      */
     public Graph()
     {
-      vertices = new ArrayList();
-      edges = new ArrayList();
+      vertices = new ArrayList<V>();
+      edges = new ArrayList<ArrayList>();
     }
 
     /**
@@ -45,13 +47,13 @@ public class Graph<V>
      */
     public int numVertices()
     {
-      verticesSize = vertices.size();
-      edgesSize = edges.size();
+      int verticesSize = vertices.size();
+      int edgesSize = edges.size();
       if (verticesSize != edgesSize) {
-          throw new RuntimeException("Vertices has size " + verticesSize + " while Edges has size " + edgesSize);
+        throw new RuntimeException("Vertices has size " + verticesSize + " while Edges has size " + edgesSize);
       }
       else {
-          return verticesSize;
+        return verticesSize;
       }
     }
 
@@ -62,7 +64,7 @@ public class Graph<V>
      */
     public int numEdges()
     {
-      private int totalEdges = 0;
+      int totalEdges = 0;
       for (ArrayList edge: edges) {
         totalEdges = totalEdges + edges.size();
       }
@@ -83,7 +85,7 @@ public class Graph<V>
     public int degree(V vertex)
     {
       // Check the vertex list for the object. Will return -1 if it does not exist
-      private objectIndex = vertices.indexOf(vertex);
+      int objectIndex = vertices.indexOf(vertex);
       if (objectIndex == -1) {
         throw new RuntimeException("Vertex does not exist");
       }
@@ -120,7 +122,8 @@ public class Graph<V>
       if (vertices.indexOf(vertex) == -1) {
         vertices.add(vertex);
         // Add a blank arraylist to the edges arraylist to hold this vertece's edges
-        edges.add(ArrayList<int> e = new ArrayList());
+        ArrayList<Integer> e = new ArrayList<Integer>();
+        edges.add(e);
       }
     }
 
@@ -181,12 +184,12 @@ public class Graph<V>
     public boolean hasEdge(V from, V to)
     {
       // Get index of from vertices
-      private int fromIndex = vertices.indexOf(from);
+      int fromIndex = vertices.indexOf(from);
       // Get index of to vertice
-      private int toIndex = vertices.indexOf(to);
+      int toIndex = vertices.indexOf(to);
 
       // Find from vertice edge ArrayList
-      ArrayList<int> fromEdges = edges.get(fromIndex);
+      ArrayList<Integer> fromEdges = edges.get(fromIndex);
 
       if (fromEdges.indexOf(toIndex) == -1) {
         return false;

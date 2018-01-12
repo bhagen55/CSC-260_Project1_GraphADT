@@ -103,9 +103,25 @@ public class Graph<V>
      *
      * @param from the source vertex for the added edge
      * @param to the destination vertex for the added edge
+     *
+     * TODO: Remove some processing time by finding indexOf first and saving it
+     *
      */
     public void addEdge(V from, V to)
     {
+      // Check if the from and to vertex exist. If not, add them.
+      if (vertices.indexOf(from) == -1) {
+        addVertex(from);
+      }
+      if (vertices.indexOf(to) == -1) {
+        addVertex(to);
+      }
+
+      // Find verteces
+      int fromIndex = vertices.indexOf(from);
+      int toIndex = vertices.indexOf(to);
+
+
 
     }
 

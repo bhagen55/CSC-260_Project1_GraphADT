@@ -15,14 +15,29 @@ package edu.union.adt.graph;
  *
  * @author Aaron G. Cass
  * @version 1
+ *
+ * Assumptions/Limitations:
+ *  Will have issues with adding the same object, ie adding two "a" vertices
+ *
  */
 public class Graph<V>
 {
+    // Holds the vertices of generic type
+    private ArrayList<V> vertices;
+
+    /**
+     * Holds a record of which objects are connected to which using
+     * their index in the 'objects' LinkedList
+     */
+    private ArrayList<ArrayList> edges;
+
     /**
      * Create an empty graph.
      */
-    public Graph() 
+    public Graph()
     {
+        vertices = new ArrayList();
+        edges = new ArrayList();
     }
 
     /**
@@ -30,15 +45,28 @@ public class Graph<V>
      */
     public int numVertices()
     {
-        return 0;
+        verticesSize = vertices.size();
+        edgesSize = edges.size();
+        if (verticesSize != edgesSize) {
+            throw new RuntimeException("Vertices has size " + verticesSize + " while Edges has size " + edgesSize);
+        }
+        else {
+            return verticesSize;
+        }
     }
 
     /**
      * @return the number of edges in the graph.
+     * Iterates through edge arraylist and counts the number of elements in each
+     * arraylist contained in the edge arraylist
      */
     public int numEdges()
     {
-        return 0;
+        private int totalEdges = 0;
+        for (ArrayList edge: edges) {
+          totalEdges = totalEdges + edges.size();
+        }
+        return totalEdges;
     }
 
     /**
@@ -48,10 +76,21 @@ public class Graph<V>
      *
      * @param vertex the vertex whose degree we want.
      * @return the degree of vertex 'vertex'
+     *
+     * TODO: Make robust for identical vertices existing?
+     *
      */
     public int degree(V vertex)
     {
-        return 0;
+        // Check the vertex list for the object. Will return -1 if it does not exist
+        private objectIndex = vertices.indexOf(vertex);
+        if (objectIndex == -1) {
+          throw new RuntimeException("Vertex does not exist");
+        }
+        else {
+          // Finds the vertex's edges in the edges list and returns the size of it
+          return edges.get(objectIndex).size();
+        }
     }
 
     /**

@@ -121,8 +121,10 @@ public class Graph<V>
       int fromIndex = vertices.indexOf(from);
       int toIndex = vertices.indexOf(to);
 
-
-
+      // Get edge array for from Vertex
+      ArrayList<Integer> e = edges.Get(fromIndex);
+      // Add to vertex index
+      e.Add(toIndex);
     }
 
     /**
@@ -178,12 +180,13 @@ public class Graph<V>
      */
     public boolean contains(V vertex)
     {
-      if (vertices.indexOf(vertex) == -1) {
-        return false;
-      }
-      else {
-        return true;
-      }
+      // if (vertices.indexOf(vertex) == -1) {
+      //   return false;
+      // }
+      // else {
+      //   return true;
+      // }
+      return vertices.contains(vertex);
     }
 
     /**

@@ -66,7 +66,7 @@ public class Graph<V>
     {
       int totalEdges = 0;
       for (ArrayList edge: edges) {
-        totalEdges = totalEdges + edges.size();
+        totalEdges = totalEdges + edge.size();
       }
       return totalEdges;
     }
@@ -91,7 +91,7 @@ public class Graph<V>
       }
       else {
         // Finds the vertex's edges in the edges list and returns the size of it
-        return edges.get(objectIndex).size();
+        return (edges.get(objectIndex)).size();
       }
     }
 
@@ -121,9 +121,9 @@ public class Graph<V>
       int toIndex = vertices.indexOf(to);
 
       // Get edge array for from Vertex
-      ArrayList<Integer> e = edges.Get(fromIndex);
+      ArrayList<Integer> e = edges.get(fromIndex);
       // Add to vertex index
-      e.Add(toIndex);
+      e.add(toIndex);
     }
 
     /**
@@ -249,6 +249,9 @@ public class Graph<V>
      */
     public String toString()
     {
-        return "";
+      for (ArrayList vertex: verteces) {
+
+      }
+      return "";
     }
 }

@@ -120,7 +120,7 @@ public class Graph<V>
       if (vertices.indexOf(vertex) == -1) {
         vertices.add(vertex);
         // Add a blank arraylist to the edges arraylist to hold this vertece's edges
-        edges.add(ArrayList<int> e = new ArrayList())
+        edges.add(ArrayList<int> e = new ArrayList());
       }
     }
 
@@ -159,7 +159,12 @@ public class Graph<V>
      */
     public boolean contains(V vertex)
     {
+      if (vertices.indexOf(vertex) == -1) {
         return false;
+      }
+      else {
+        return true;
+      }
     }
 
     /**
@@ -175,7 +180,20 @@ public class Graph<V>
      */
     public boolean hasEdge(V from, V to)
     {
+      // Get index of from vertices
+      private int fromIndex = vertices.indexOf(from);
+      // Get index of to vertice
+      private int toIndex = vertices.indexOf(to);
+
+      // Find from vertice edge ArrayList
+      ArrayList<int> fromEdges = edges.get(fromIndex);
+
+      if (fromEdges.indexOf(toIndex) == -1) {
         return false;
+      }
+      else {
+        return true;
+      }
     }
 
     /**

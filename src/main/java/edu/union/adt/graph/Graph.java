@@ -250,22 +250,27 @@ public class Graph<V>
     public String toString()
     {
       // String to store as we go
-      String str = new String();
-      System.out.println("Starting");
+      StringBuffer str = new StringBuffer();
 
       int index = 0;
       // Iterate through each vertex in the graph
       for (V vertex: vertices) {
-        str.concat(vertex.toString() + ":");
+        str.append(vertex.toString() + ":");
         // Find the list of edges for this vertex
         ArrayList<Integer> e = edges.get(index);
         // Add the verteces that this vertex is connected to
+        int edgeIndex = 0;
         for (int edge: e) {
-          str.concat(" " + vertices.get(edge).toString() + ",");
+          str.append(" " + vertices.get(edge).toString());
+          if (edgeIndex < e.size()-1) {
+            str.append(",");
+          }
+          edgeIndex++;
         }
-        str.concat("\r");
+        str.append("\r");
         index++;
       }
-      return "";
+      System.out.println(str.toString());
+      return str.toString();
     }
 }

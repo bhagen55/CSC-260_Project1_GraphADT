@@ -150,7 +150,7 @@ public class Graph<V>
      */
     public Iterable<V> getVertices()
     {
-        return null;
+        return vertices;
     }
 
     /**
@@ -179,12 +179,6 @@ public class Graph<V>
      */
     public boolean contains(V vertex)
     {
-      // if (vertices.indexOf(vertex) == -1) {
-      //   return false;
-      // }
-      // else {
-      //   return true;
-      // }
       return vertices.contains(vertex);
     }
 

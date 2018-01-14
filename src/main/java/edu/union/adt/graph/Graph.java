@@ -275,10 +275,10 @@ public class Graph<V>
           }
           edgeIndex++;
         }
-        str.append("\r");
+        str.append("\n");
         index++;
       }
-      //System.out.println(str.toString());
+      System.out.println(str.toString());
       return str.toString();
     }
 

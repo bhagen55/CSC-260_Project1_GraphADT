@@ -44,8 +44,10 @@ public class Graph<V>
     }
 
     /**
-     * @return the number of vertices in the graph.
-     */
+    * Gives the number of vertices in the graph.
+    *
+    * @return the number of vertices in the graph.
+    */
     public int numVertices()
     {
       int verticesSize = vertices.size();
@@ -59,10 +61,12 @@ public class Graph<V>
     }
 
     /**
-     * @return the number of edges in the graph.
-     * Iterates through edge arraylist and counts the number of elements in each
-     * arraylist contained in the edge arraylist
-     */
+    * Gives the number of edges in the graph.
+    *
+    * @return the number of edges in the graph.
+    * Iterates through edge arraylist and counts the number of elements in each
+    * arraylist contained in the edge arraylist
+    */
     public int numEdges()
     {
       int totalEdges = 0;
@@ -79,9 +83,6 @@ public class Graph<V>
      *
      * @param vertex the vertex whose degree we want.
      * @return the degree of vertex 'vertex'
-     *
-     * TODO: Make robust for identical vertices existing?
-     *
      */
     public int degree(V vertex)
     {
@@ -104,8 +105,6 @@ public class Graph<V>
      *
      * @param from the source vertex for the added edge
      * @param to the destination vertex for the added edge
-     *
-     *
      */
     public void addEdge(V from, V to)
     {
@@ -146,9 +145,12 @@ public class Graph<V>
     }
 
     /**
-     * @return an iterable collection for the set of vertices of
-     * the graph.
-     */
+    * Gets all vertices in the graph. They are returned in the same order they
+    * were added to the graph.
+    *
+    * @return iterable - an iterable collection for the set of vertices of
+    * the graph.
+    */
     public Iterable<V> getVertices()
     {
       Iterable<V> iterable = vertices;
@@ -163,7 +165,7 @@ public class Graph<V>
      * NOT adjacent to y.
      *
      * @param from the source vertex
-     * @return an iterable collection for the set of vertices that are
+     * @return iterable - an iterable collection for the set of vertices that are
      * the destinations of edges for which 'from' is the source
      * vertex.  If 'from' is not a vertex in the graph, returns an
      * empty iterator.
@@ -197,7 +199,7 @@ public class Graph<V>
     }
 
     /**
-     * Tells whether an edge exists in the graph.
+     * Tells whether an edge exists in the graph connecting two vertices.
      *
      * @param from the source vertex
      * @param to the destination vertex
@@ -283,14 +285,14 @@ public class Graph<V>
     }
 
     /**
-    * Overrides default java object equals method
+    * Checks if a given object is equal to self.
+    *
+    * Does not check for order of addition to the graph or any other
+    * type of ordering within the graph.
     *
     * @param obj the graph to compare this graph to
     *
     * @return true iff the graphs are equal
-    *
-    * TODO: Check if graphs are storing the same types
-    *
     */
     public boolean equals(Object obj) {
 
@@ -299,14 +301,14 @@ public class Graph<V>
         return false;
       }
 
+      // Since object is of type Graph, cast it as such
       Graph otherGraph = (Graph) obj;
-
+    
       Iterable<V> otherVertices = otherGraph.getVertices();
 
-        // Check if both graphs have the same vertices
+      // Check if both graphs have the same vertices
       for (V vertice : otherVertices) {
         if (contains(vertice)) {
-          // Vertice exists in both
           // Check if the edges are the same
           Iterable<V> otherEdges = otherGraph.adjacentTo(vertice);
           for (V edge : otherEdges) {

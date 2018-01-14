@@ -1,6 +1,7 @@
 package edu.union.adt.graph;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * A graph that establishes connections (edges) between objects of
@@ -150,7 +151,8 @@ public class Graph<V>
      */
     public Iterable<V> getVertices()
     {
-        return vertices;
+      Iterable<V> iterable = vertices;
+      return iterable;
     }
 
     /**
@@ -168,7 +170,19 @@ public class Graph<V>
      */
     public Iterable<V> adjacentTo(V from)
     {
-        return null;
+      int fromIndex = vertices.indexOf(from);
+
+      ArrayList<Integer> e = edges.get(fromIndex);
+
+      ArrayList<V> adjacentVertices = new ArrayList<V>();
+
+      for (int vertexIndex: e) {
+        adjacentVertices.add(vertices.get(vertexIndex));
+      }
+
+      Iterable<V> iterable = adjacentVertices;
+
+      return iterable;
     }
 
     /**
@@ -266,5 +280,56 @@ public class Graph<V>
       }
       System.out.println(str.toString());
       return str.toString();
+    }
+
+    /**
+    * Overrides default java object equals method
+    *
+    * @param obj the graph to compare this graph to
+    *
+    * @return true iff the graphs are equal
+    *
+    * TODO: Check if graphs are storing the same types
+    *
+    */
+    public boolean equals(Object obj) {
+
+      Boolean isEqual = false;
+
+      // Check if object is of type Graph
+      if (obj instanceof Graph) {
+        Graph obj = (Graph) obj;
+
+        Iterable<V> otherVertices = obj.getVertices();
+
+        // Check if both graphs have the same vertices
+        for (V vertice : otherVertices) {
+          if (Self.contains(vertice)) {
+            // Vertice exists in both
+            // Check if the edges are the same
+            Iterable<V> otherEdges = obj.adjacentTo();
+            for (V edge : otherEdges) {
+              if (Self.contains(edge)) {
+                isEqual = true;
+              }
+              else {
+                break;
+              }
+            }
+          }
+          else {
+            break;
+          }
+        }
+      }
+      else {
+
+      }
+
+
+
+
+
+      return isEqual;
     }
 }

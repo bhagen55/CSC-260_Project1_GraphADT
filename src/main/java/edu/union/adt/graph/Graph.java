@@ -278,7 +278,7 @@ public class Graph<V>
         str.append("\r");
         index++;
       }
-      System.out.println(str.toString());
+      //System.out.println(str.toString());
       return str.toString();
     }
 
@@ -294,42 +294,32 @@ public class Graph<V>
     */
     public boolean equals(Object obj) {
 
-      Boolean isEqual = false;
-
       // Check if object is of type Graph
-      if (obj instanceof Graph) {
-        Graph obj = (Graph) obj;
+      if (!(obj instanceof Graph)) {
+        return false;
+      }
 
-        Iterable<V> otherVertices = obj.getVertices();
+      Graph otherGraph = (Graph) obj;
+
+      Iterable<V> otherVertices = otherGraph.getVertices();
 
         // Check if both graphs have the same vertices
-        for (V vertice : otherVertices) {
-          if (Self.contains(vertice)) {
-            // Vertice exists in both
-            // Check if the edges are the same
-            Iterable<V> otherEdges = obj.adjacentTo();
-            for (V edge : otherEdges) {
-              if (Self.contains(edge)) {
-                isEqual = true;
-              }
-              else {
-                break;
-              }
+      for (V vertice : otherVertices) {
+        if (contains(vertice)) {
+          // Vertice exists in both
+          // Check if the edges are the same
+          Iterable<V> otherEdges = otherGraph.adjacentTo(vertice);
+          for (V edge : otherEdges) {
+            if (!contains(edge)) {
+              return false;
             }
           }
-          else {
-            break;
-          }
+        }
+        else {
+          return false;
         }
       }
-      else {
-
-      }
-
-
-
-
-
-      return isEqual;
+      return true;
     }
+
 }

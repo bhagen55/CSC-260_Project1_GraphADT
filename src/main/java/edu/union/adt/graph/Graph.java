@@ -303,7 +303,7 @@ public class Graph<V>
 
       // Since object is of type Graph, cast it as such
       Graph otherGraph = (Graph) obj;
-    
+
       Iterable<V> otherVertices = otherGraph.getVertices();
 
       // Check if both graphs have the same vertices

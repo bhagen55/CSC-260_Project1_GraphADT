@@ -18,7 +18,7 @@ import edu.union.adt.graph.Graph;
 public class SimpleGraphTests
 {
     private Graph<String> g;
-    
+
     @Before
     public void setUp()
     {
@@ -30,7 +30,7 @@ public class SimpleGraphTests
     {
         g = null;
     }
-    
+
     @Test
     public void construct()
     {
@@ -114,8 +114,8 @@ public class SimpleGraphTests
 
         return false;
     }
-    
-    @Test 
+
+    @Test
     public void degree()
     {
         g.addEdge("Foo", "Bar");
@@ -128,7 +128,7 @@ public class SimpleGraphTests
 
         assertEquals("Adding two edges to one destination does not make degree = 2",
                      1, g.degree("Bar"));
-        
+
     }
 
     @Test
@@ -137,7 +137,7 @@ public class SimpleGraphTests
         g.addVertex("A");
         g.addVertex("B");
         g.addVertex("C");
-        
+
         g.addEdge("A", "A");
         g.addEdge("A", "B");
         g.addEdge("C", "A");
@@ -147,7 +147,7 @@ public class SimpleGraphTests
 
         // I cannot just specify a single string, because the order we list the nodes
         // is not specified, and doesn't matter.
-        
+
         verifyNoExtraCommas(graphString);
         verifyNoExtraSpaces(graphString);
         verifyNoExtraColons(graphString);
@@ -206,6 +206,6 @@ public class SimpleGraphTests
         }
 
         fail("No vertex for " + from + " in string output");
-            
+
     }
 }

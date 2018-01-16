@@ -2,7 +2,7 @@
 * Interface file for the Graph class
 */
 
-interface Graph {
+public interface Graph<V> {
 
   int numVertices();
   int numEdges();

@@ -19,11 +19,9 @@ import java.util.Iterator;
  * @author Aaron G. Cass
  * @version 1
  *
- * Assumptions/Limitations:
- *  Will have issues with adding the same object, ie adding two "a" vertices
  *
  */
-public class Graph<V> implements Graph
+public class GraphImpl implements Graph<V>
 {
     // Holds the vertices of generic type
     private ArrayList<V> vertices;
@@ -37,7 +35,7 @@ public class Graph<V> implements Graph
     /**
      * Create an empty graph.
      */
-    public Graph()
+    public GraphImpl()
     {
       vertices = new ArrayList<V>();
       edges = new ArrayList<ArrayList>();

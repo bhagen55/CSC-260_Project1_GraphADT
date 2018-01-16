@@ -5,6 +5,7 @@
 public class GraphFactory<V>
 {
 
+
   public GraphFactory()
   {
 
@@ -12,7 +13,7 @@ public class GraphFactory<V>
 
   public Graph<V> createGraph()
   {
-    private Graph<V> g = new Graph<V>();
+    Graph<V> g = new Graph<V>();
     return g;
   }
 }

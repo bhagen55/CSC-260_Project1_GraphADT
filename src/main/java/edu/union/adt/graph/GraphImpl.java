@@ -23,7 +23,7 @@ import java.util.Iterator;
  *  Will have issues with adding the same object, ie adding two "a" vertices
  *
  */
-public class Graph<V> implements GraphFactory
+public class Graph<V> implements Graph
 {
     // Holds the vertices of generic type
     private ArrayList<V> vertices;

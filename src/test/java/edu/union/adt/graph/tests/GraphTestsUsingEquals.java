@@ -11,23 +11,29 @@ import org.junit.After;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import edu.union.adt.graph.Graph;
+import edu.union.adt.graph.*;
 
 import java.util.ArrayList;
 
 @RunWith(JUnit4.class)
 public class GraphTestsUsingEquals
 {
-    private Graph<String> g;
-    private Graph<String> g2;
-    private Graph<Object> objectGraph;
+  private GraphFactory factory;
+
+  private Graph<String> g;
+  private Graph<String> g2;
+
+  private Graph<Object> objectGraph;
 
     @Before
     public void setUp()
     {
-        g = new Graph<String>();
-        g2 = new Graph<String>();
-        objectGraph = new Graph<Object>();
+
+      factory = new GraphFactory();
+      g = factory.createGraph();
+      g2 = factory.createGraph();
+
+      objectGraph = factory.createGraph();
     }
 
     @Test

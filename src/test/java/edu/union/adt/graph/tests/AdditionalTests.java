@@ -11,18 +11,23 @@ import org.junit.After;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import edu.union.adt.graph.Graph;
+import edu.union.adt.graph.*;
 
 import java.util.ArrayList;
 
 @RunWith(JUnit4.class)
 public class AdditionalTests
 {
+  private GraphFactory factory;
+
   private Graph<String> g;
   private Graph<String> g2;
+
   private Graph<int[]> g3;
   private Graph<int[]> g4;
+
   private Graph<Integer> g5;
+
   private Graph<Object> objectGraph;
 
   private String str;
@@ -35,21 +40,21 @@ public class AdditionalTests
   @Before
   public void setUp()
   {
-      g = new Graph<String>();
-      g2 = new Graph<String>();
+    factory = new GraphFactory();
+    g = factory.createGraph();
+    g2 = factory.createGraph();
 
-      g3 = new Graph<int[]>();
-      g4 = new Graph<int[]>();
+    g3 = factory.createGraph();
+    g4 = factory.createGraph();
 
-      g5 = new Graph<Integer>();
+    g5 = factory.createGraph();
 
-      objectGraph = new Graph<Object>();
 
-      str = "string";
-      arraylist = new ArrayList<String>();
+    str = "string";
+    arraylist = new ArrayList<String>();
 
-      a1 = new int[2];
-      a2 = new int[2];
+    a1 = new int[2];
+    a2 = new int[2];
   }
 
   @Test

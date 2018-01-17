@@ -1,3 +1,5 @@
+package edu.union.adt.graph;
+
 /**
 * Simple class to use the new Graph interface
 */
@@ -13,7 +15,7 @@ public class GraphFactory<V>
 
   public Graph<V> createGraph()
   {
-    Graph<V> g = new Graph<V>();
+    GraphImpl<V> g = new GraphImpl<V>();
     return g;
   }
 }

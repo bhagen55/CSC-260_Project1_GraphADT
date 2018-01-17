@@ -21,7 +21,7 @@ import java.util.Iterator;
  *
  *
  */
-public class GraphImpl implements Graph<V>
+public class GraphImpl<V> implements Graph<V>
 {
     // Holds the vertices of generic type
     private ArrayList<V> vertices;

@@ -147,9 +147,35 @@ public class ExtendedAPITests
     g.addEdge("foo","foo");
     g.addEdge("baloney", "ham");
 
-    
+    g.assertEquals("Path length to the same vertex is 0",
+                    g.pathLength("bar", "bar"));
+
+    g.assertEquals("Path length to the same vertex is 0," +
+                    " even if it has a self path",
+                    g.pathLength("foo", "foo"), 0);
+
+    g.assertEquals("Path length between two vertices is 1",
+                    g.pathLength("foo", "bar"), 1);
+
+    g.assertEquals("Path length between four vertices is 3",
+                    g.pathLength("foo", "ham"), 3);
+
+    g.addVertex("lonely");
+    g.assertEquals("Nonexistent path has length Integer.MAX_VALUE",
+                    g.pathLength("foo", "lonely"), Integer.MAX_VALUE);
+
+    g.assertEquals("There is no backwards path through edges",
+                    g.pathLength("ham", "baloney"), Integer.MAX_VALUE);
+
+    g.assertEquals("Shortest length is chosen between vertices",
+                    g.pathLength("baloney", "bar"), 1);
   }
 
+  @Test
+  public void testGetPath()
+  {
+    
+  }
 
 
 

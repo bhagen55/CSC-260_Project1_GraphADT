@@ -171,12 +171,70 @@ public class ExtendedAPITests
                     g.pathLength("baloney", "bar"), 1);
   }
 
+  private boolean iteratorContains(Iterable<String> container, String[] x)
+  {
+      for (String str: container) {
+          if (!str.equals(x[i])) {
+            return false;
+          }
+      }
+      return true;
+  }
+
+  private int iteratorLength(Iterable<String> container)
+  {
+    int length = 0;
+
+    for (String str: container) {
+      length++;
+    }
+
+    return length;
+  }
+
   @Test
   public void testGetPath()
   {
-    
+    g.addVertex("foo");
+    g.addVertex("bar");
+    g.addVertex("baloney");
+    g.addVertex("ham");
+
+    g.addEdge("foo", "bar");
+    g.addEdge("bar", "baloney");
+    g.addEdge("baloney", "bar");
+    g.addEdge("foo","foo");
+    g.addEdge("baloney", "ham");
+
+    g.addVertex("lonely");
+
+    String[] str = {"lonely", "lonely"};
+
+    g.assertTrue("Path from and to the same vertex is itself to itself",
+                  iteratorContains(g.getPath("lonely", "lonely"), str);
+
+    g.assertEquals("Path to and from a vertex that doesn't exist is empty",
+                  iteratorLength(g.getPath("nope", "also nope")), 0);
+
+    g.assertEquals("Path between two vertices that aren't connected is empty",
+                  iteratorLength(g.getPath("foo", "lonely")), 0);
+
+    str = {"foo", "bar"};
+    g.assertTrue("Path between two vertices works",
+                  iteratorContains(g.getPath("foo", "bar"), str));
+
+    g.assertEquals("Path between vertices connected in one direction but not" +
+                  " the other direction is empty when checked",
+                  iteratorLength(g.getPath("ham", "baloney")), 0);
+
+    str = {"foo", "bar", "baloney"};
+    g.assertTrue("Path bteween three vertices works",
+                  iteratorContains(g.getPath("foo", "baloney")));
+
+    g.addEdge("foo", "baloney");
+    str = {"foo", "baloney"};
+    g.assertTrue("Path is shortest option if multiple routes exist",
+                iteratorContains(g.getPath("foo", "baloney"), str));
+
   }
-
-
-
 }

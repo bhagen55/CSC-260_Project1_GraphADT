@@ -332,12 +332,16 @@ public class GraphImpl<V> implements Graph<V>
     {
       if (vertices.size() == 0)
       {
-        return true;
+        if (edges.size() != 0)
+        {
+          throw new RuntimeException("Graph has edges but no vertices");
+        }
       }
       else
       {
         return false;
       }
+      return true;
     }
 
     /**
@@ -357,7 +361,7 @@ public class GraphImpl<V> implements Graph<V>
      */
     public void removeVertex(V toRemove)
     {
-      
+
     }
 
     /**

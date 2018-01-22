@@ -110,10 +110,16 @@ public class AdditionalTests
 
   private boolean iteratorContains(Iterable<Integer> container, int[] x)
   {
+    int index = 0;
       for (int i: container) {
-          if (i != x[i]) {
+          if (i != x[index]) {
             return false;
           }
+          index++;
+      }
+      if (index != x.length)
+      {
+        return false;
       }
       return true;
   }

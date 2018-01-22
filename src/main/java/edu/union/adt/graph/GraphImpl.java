@@ -330,7 +330,14 @@ public class GraphImpl<V> implements Graph<V>
      */
     public boolean isEmpty()
     {
-      return false;
+      if (vertices.size() == 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
 
     /**
@@ -350,7 +357,7 @@ public class GraphImpl<V> implements Graph<V>
      */
     public void removeVertex(V toRemove)
     {
-
+      
     }
 
     /**

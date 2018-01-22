@@ -34,7 +34,11 @@ public class ExtendedAPITests
   public void testEmpty()
   {
     assertTrue("A graph with no vertices is empty", g.isEmpty());
+  }
 
+  @Test
+  public void testNotEmpty()
+  {
     g.addVertex("foo");
     assertFalse("A graph with a vertice is not empty", g.isEmpty());
   }
@@ -101,6 +105,21 @@ public class ExtendedAPITests
   }
 
   @Test
+  public void testHasPathSelf()
+  {
+    g.addVertex("foo");
+    g.addVertex("bar");
+
+    g.addEdge("foo","foo");
+
+    assertTrue("There is a path between a self-edge vertice",
+                g.hasPath("foo", "foo"));
+
+    assertFalse("There is no path between a non-self-edge vertice",
+                g.hasPath("bar", "bar"));
+  }
+
+  @Test
   public void testHasPath()
   {
     g.addVertex("foo");
@@ -125,12 +144,6 @@ public class ExtendedAPITests
                   " vertice", g.hasPath("foo", "baloney"));
     assertTrue("There is a path between vertices separated by two" +
                   " vertices", g.hasPath("foo", "ham"));
-
-    assertTrue("There is a path between a self-edge vertice",
-                g.hasPath("foo", "foo"));
-
-    assertFalse("There is no path between a non-self-edge vertice",
-                g.hasPath("bar", "bar"));
   }
 
   @Test
@@ -160,15 +173,21 @@ public class ExtendedAPITests
     assertEquals("Path length between four vertices is 3",
                     g.pathLength("foo", "ham"), 3);
 
-    g.addVertex("lonely");
-    assertEquals("Nonexistent path has length Integer.MAX_VALUE",
-                    g.pathLength("foo", "lonely"), Integer.MAX_VALUE);
+
 
     assertEquals("There is no backwards path through edges",
                     g.pathLength("ham", "baloney"), Integer.MAX_VALUE);
 
     assertEquals("Shortest length is chosen between vertices",
                     g.pathLength("baloney", "bar"), 1);
+  }
+
+  @Test
+  public void testPathLengthNoEdges()
+  {
+    g.addVertex("lonely");
+    assertEquals("Nonexistent path has length Integer.MAX_VALUE",
+                    g.pathLength("foo", "lonely"), Integer.MAX_VALUE);
   }
 
   private boolean iteratorContains(Iterable<String> container, String[] s)
@@ -215,11 +234,7 @@ public class ExtendedAPITests
     assertTrue("Path from and to the same vertex is itself to itself",
                   iteratorContains(g.getPath("lonely", "lonely"), testStr1));
 
-    assertEquals("Path to and from a vertex that doesn't exist is empty",
-                  iteratorLength(g.getPath("nope", "also nope")), 0);
 
-    assertEquals("Path between two vertices that aren't connected is empty",
-                  iteratorLength(g.getPath("foo", "lonely")), 0);
 
     String[] testStr2 = {"foo", "bar"};
     assertTrue("Path between two vertices works",
@@ -238,5 +253,18 @@ public class ExtendedAPITests
     assertTrue("Path is shortest option if multiple routes exist",
                 iteratorContains(g.getPath("foo", "baloney"), testStr4));
 
+  }
+
+  @Test
+  public void testGetPathEmpty()
+  {
+    g.addVertex("foo");
+    g.addVertex("lonely");
+
+    assertEquals("Path to and from a vertex that doesn't exist is empty",
+                  iteratorLength(g.getPath("nope", "also nope")), 0);
+
+    assertEquals("Path between two vertices that aren't connected is empty",
+                  iteratorLength(g.getPath("foo", "lonely")), 0);
   }
 }

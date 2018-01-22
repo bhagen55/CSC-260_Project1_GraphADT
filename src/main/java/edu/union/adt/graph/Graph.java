@@ -18,4 +18,11 @@ public interface Graph<V> {
   String toString();
   boolean equals(Object obj);
 
+  boolean isEmpty();
+  void removeVertex(V toRemove);
+  void removeEdge(V from, V to);
+  boolean hasPath(V from, V to);
+  int pathLength(V from, V to);
+  Iterable<V> getPath(V from, V to);
+
 }

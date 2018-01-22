@@ -199,6 +199,10 @@ public class ExtendedAPITests
           }
           i++;
       }
+      if (i != s.length)
+      {
+        return false;
+      }
       return true;
   }
 

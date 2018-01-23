@@ -361,7 +361,9 @@ public class GraphImpl<V> implements Graph<V>
      */
     public void removeVertex(V toRemove)
     {
+      removeIndex = vertices.indexOf(toRemove);
 
+      
     }
 
     /**

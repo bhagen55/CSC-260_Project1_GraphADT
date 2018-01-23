@@ -25,4 +25,7 @@ public interface Graph<V> {
   int pathLength(V from, V to);
   Iterable<V> getPath(V from, V to);
 
+  String returnVertices();
+  String returnEdges();
+
 }

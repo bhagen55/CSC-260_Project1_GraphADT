@@ -408,7 +408,19 @@ public class GraphImpl<V> implements Graph<V>
      */
     public void removeEdge(V from, V to)
     {
+      // Get index of from vertex
+      int fromIndex = vertices.indexOf(from);
+      // Get index of to vertex
+      int toIndex = vertices.indexOf(to);
 
+      if (fromIndex != -1)
+      {
+        // Find from vertice edge ArrayList
+        ArrayList<Integer> fromEdges = edges.get(fromIndex);
+        
+        // Remove the to vertex index if it exists
+        fromEdges.remove(new Integer(toIndex));
+      }
     }
 
     /**

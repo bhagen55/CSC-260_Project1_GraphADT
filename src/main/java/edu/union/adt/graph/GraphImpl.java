@@ -209,19 +209,28 @@ public class GraphImpl<V> implements Graph<V>
      */
     public boolean hasEdge(V from, V to)
     {
-      // Get index of from vertices
+      // Get index of from vertex
       int fromIndex = vertices.indexOf(from);
-      // Get index of to vertice
+      // Get index of to vertex
       int toIndex = vertices.indexOf(to);
 
-      // Find from vertice edge ArrayList
-      ArrayList<Integer> fromEdges = edges.get(fromIndex);
+      if (fromIndex != -1)
+      {
+        // Find from vertice edge ArrayList
+        ArrayList<Integer> fromEdges = edges.get(fromIndex);
 
-      if (fromEdges.indexOf(toIndex) == -1) {
-        return false;
+        if (!fromEdges.contains(toIndex))
+        {
+          return false;
+        }
+        else
+        {
+          return true;
+        }
       }
-      else {
-        return true;
+      else
+      {
+        return false;
       }
     }
 
@@ -361,9 +370,34 @@ public class GraphImpl<V> implements Graph<V>
      */
     public void removeVertex(V toRemove)
     {
-      removeIndex = vertices.indexOf(toRemove);
+      int removeIndex = vertices.indexOf(toRemove);
 
-      
+      // Only attempt to remove if the index actually exists
+      if (removeIndex != -1)
+      {
+        // Delete the edges coming from the vertex to remove
+        edges.remove(removeIndex);
+
+        // Delete the edges going to the vertex to remove
+        for (ArrayList<Integer> edge : edges)
+        {
+          edge.remove(new Integer(removeIndex));
+        }
+
+        // Decrement the edge indexes of vertices at greater than the removed index
+        for (ArrayList<Integer> edge : edges)
+        {
+          for (int index : edge)
+          {
+            if (index > removeIndex)
+            {
+              edge.set(index, index - 1);
+            }
+          }
+        }
+        // Remove the index after all its remnants are gone
+        vertices.remove(removeIndex);
+      }
     }
 
     /**
@@ -438,6 +472,16 @@ public class GraphImpl<V> implements Graph<V>
     public Iterable<V> getPath(V from, V to)
     {
       return null;
+    }
+
+    public String returnVertices()
+    {
+      return vertices.toString();
+    }
+
+    public String returnEdges()
+    {
+      return edges.toString();
     }
 
 }

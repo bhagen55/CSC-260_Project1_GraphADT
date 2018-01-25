@@ -501,7 +501,7 @@ public class GraphImpl<V> implements Graph<V>
         Queue<V> queue = new Queue<V>;
 
         // Store vertices that have been visited
-        arrayList<V> visited = new arrayList<V>;
+        ArrayList<V> visited = new ArrayList<V>;
 
         // Add the main node to the queue and mark it as visited
         queue.add(from);
@@ -517,13 +517,14 @@ public class GraphImpl<V> implements Graph<V>
           {
             // Check if the vertex has been visited already
             if (!visited.contains)
-            // Mark as visited
-            visited.add(adjVert);
-
-            //
+            {
+              // Mark as visited
+              visited.add(adjVert);
+              // Add to Queue
+              queue.add(adjVert);
+            }
           }
         }
-
       }
 
 

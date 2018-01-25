@@ -2,6 +2,8 @@ package edu.union.adt.graph;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Queue;
+import java.util.HashMap;
 
 /**
  * A graph that establishes connections (edges) between objects of
@@ -417,7 +419,7 @@ public class GraphImpl<V> implements Graph<V>
       {
         // Find from vertice edge ArrayList
         ArrayList<Integer> fromEdges = edges.get(fromIndex);
-        
+
         // Remove the to vertex index if it exists
         fromEdges.remove(new Integer(toIndex));
       }
@@ -483,7 +485,52 @@ public class GraphImpl<V> implements Graph<V>
      */
     public Iterable<V> getPath(V from, V to)
     {
-      return null;
+      // Arraylist to hold the shortest path and be converted to an interable
+      ArrayList<V> shortList = new ArrayList<V>;
+
+      // If we are looking from a path to and from the same vertice, save some
+      // work and just add the to and from vertices directly to the short list
+      if (from.equals(to))
+      {
+        shortList.add(to);
+        shortList.add(from);
+      }
+      else
+      {
+        // Queue to store yet-to-be-visited vertices
+        Queue<V> queue = new Queue<V>;
+
+        // Store vertices that have been visited
+        arrayList<V> visited = new arrayList<V>;
+
+        // Add the main node to the queue and mark it as visited
+        queue.add(from);
+        visited.add(from);
+
+        while (!queue.isEmpty())
+        {
+          // Get the element from the top of the Queue
+          V element = queue.poll();
+
+          // Traverse the element's adjacent vertices
+          for (V adjVert : adjacentTo(element))
+          {
+            // Check if the vertex has been visited already
+            if (!visited.contains)
+            // Mark as visited
+            visited.add(adjVert);
+
+            //
+          }
+        }
+
+      }
+
+
+
+      Iterable<V> iterable = shortList;
+      return iterable;
+
     }
 
     public String returnVertices()

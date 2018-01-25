@@ -3,7 +3,9 @@ package edu.union.adt.graph;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Queue;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.LinkedList;
 
 /**
  * A graph that establishes connections (edges) between objects of
@@ -486,7 +488,7 @@ public class GraphImpl<V> implements Graph<V>
     public Iterable<V> getPath(V from, V to)
     {
       // Arraylist to hold the shortest path and be converted to an interable
-      ArrayList<V> shortList = new ArrayList<V>;
+      ArrayList<V> shortList = new ArrayList<V>();
 
       // If we are looking from a path to and from the same vertice, save some
       // work and just add the to and from vertices directly to the short list
@@ -498,10 +500,13 @@ public class GraphImpl<V> implements Graph<V>
       else
       {
         // Queue to store yet-to-be-visited vertices
-        Queue<V> queue = new Queue<V>;
+        Queue<V> queue = new LinkedList<V>();
 
         // Store vertices that have been visited
-        ArrayList<V> visited = new ArrayList<V>;
+        ArrayList<V> visited = new ArrayList<V>();
+
+        // Store a mapping of parent/child verticesSize
+        Map<V, V> neighborMap = new TreeMap<V, V>();
 
         // Add the main node to the queue and mark it as visited
         queue.add(from);
@@ -512,11 +517,19 @@ public class GraphImpl<V> implements Graph<V>
           // Get the element from the top of the Queue
           V element = queue.poll();
 
+          // If we have found the node, end the while loop
+          if (element.equals(to))
+          {
+            break;
+          }
+
           // Traverse the element's adjacent vertices
           for (V adjVert : adjacentTo(element))
           {
+            // Add the parent/child pair to the mapping
+            neighborMap.put(adjVert, element);
             // Check if the vertex has been visited already
-            if (!visited.contains)
+            if (!visited.contains(adjVert))
             {
               // Mark as visited
               visited.add(adjVert);
@@ -525,8 +538,13 @@ public class GraphImpl<V> implements Graph<V>
             }
           }
         }
+        V vertex = to;
+        while (neighborMap.get(to) != null)
+        {
+          shortList.add(vertex);
+          vertex = neighborMap.get(vertex);
+        }
       }
-
 
 
       Iterable<V> iterable = shortList;

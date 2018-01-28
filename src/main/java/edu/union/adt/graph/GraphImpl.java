@@ -500,11 +500,6 @@ public class GraphImpl<V> implements Graph<V>
       // Arraylist to hold the shortest path and be converted to an interable
       ArrayList<V> shortList = new ArrayList<V>();
 
-
-      System.out.println("from: " + from.toString());
-      System.out.println("to: " + to.toString());
-
-
       // If we are looking from a path to and from the same vertice, save some
       // work and just add the to and from vertices directly to the short list
       if (!contains(from) || !contains(to))
@@ -557,7 +552,6 @@ public class GraphImpl<V> implements Graph<V>
 
               // Add the parent/child pair to the mapping
               neighborMap.put(adjVert, element);
-              System.out.println(neighborMap.toString());
             }
           }
         }
@@ -576,9 +570,9 @@ public class GraphImpl<V> implements Graph<V>
         }
       }
 
-      System.out.println(shortList.toString());
       Iterable<V> iterable = shortList;
       return iterable;
+
     }
 
     /**

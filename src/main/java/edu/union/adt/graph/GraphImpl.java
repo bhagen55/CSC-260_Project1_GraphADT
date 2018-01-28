@@ -445,7 +445,7 @@ public class GraphImpl<V> implements Graph<V>
      */
     public boolean hasPath(V from, V to)
     {
-      if (pathLength(from, to) == 0)
+      if (pathLength(from, to) == Integer.MAX_VALUE)
       {
         return false;
       }
@@ -453,6 +453,7 @@ public class GraphImpl<V> implements Graph<V>
       {
         return true;
       }
+
     }
 
     /**
@@ -473,9 +474,25 @@ public class GraphImpl<V> implements Graph<V>
      */
     public int pathLength(V from, V to)
     {
-      Iterable<V> path = getPath(from, to);
+      if (from.equals(to))
+      {
+        return 0;
+      }
+      else
+      {
+        Iterable<V> path = getPath(from, to);
 
-      return iteratorLength(path);
+        Integer length = iteratorLength(path);
+
+        if (length == 0)
+        {
+          return Integer.MAX_VALUE;
+        }
+        else
+        {
+          return length;
+        }
+      }
     }
 
     /**

@@ -52,8 +52,10 @@ public class ExtendedAPITests
 
     g2.addVertex("foo");
     g2.addVertex("bar");
+    g2.addVertex("baloney");
 
     g.removeVertex("nope");
+
     assertTrue("Removing a vertex that doesn't exist does nothing",
                 g.equals(g2));
 
@@ -61,6 +63,7 @@ public class ExtendedAPITests
     g.addEdge("bar", "baloney");
 
     g.removeVertex("bar");
+
     assertFalse("Removing a vertex removes the vertex", g.contains("bar"));
 
     assertEquals("Removing a vertex adjusts the number of vertices",
@@ -237,6 +240,12 @@ public class ExtendedAPITests
 
     assertTrue("Path from and to the same vertex is itself to itself",
                   iteratorContains(g.getPath("lonely", "lonely"), testStr1));
+
+    g.addEdge("lonely", "lonely");
+
+    assertTrue("Path from and to the same vertex is itself to itself" +
+                "even if there is a self path",
+                iteratorContains(g.getPath("lonely", "lonely"), testStr1));
 
 
 

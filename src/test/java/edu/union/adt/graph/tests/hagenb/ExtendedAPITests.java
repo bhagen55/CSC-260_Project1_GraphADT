@@ -118,7 +118,7 @@ public class ExtendedAPITests
     assertTrue("There is a path between a self-edge vertice",
                 g.hasPath("foo", "foo"));
 
-    assertFalse("There is no path between a non-self-edge vertice",
+    assertTrue("There is a path between a non-self-edge vertice",
                 g.hasPath("bar", "bar"));
   }
 

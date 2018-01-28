@@ -445,10 +445,14 @@ public class GraphImpl<V> implements Graph<V>
      */
     public boolean hasPath(V from, V to)
     {
-      Iterable<V> path = getPath(from, to);
-
-      return iteratorLength(path);
-
+      if (pathLength(from, to) == 0)
+      {
+        return false;
+      }
+      else
+      {
+        return true;
+      }
     }
 
     /**
@@ -469,7 +473,9 @@ public class GraphImpl<V> implements Graph<V>
      */
     public int pathLength(V from, V to)
     {
-      return 0;
+      Iterable<V> path = getPath(from, to);
+
+      return iteratorLength(path);
     }
 
     /**

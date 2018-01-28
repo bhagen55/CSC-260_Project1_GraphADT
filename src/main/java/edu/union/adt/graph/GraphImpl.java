@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.LinkedList;
+import java.util.Collections;
 
 /**
  * A graph that establishes connections (edges) between objects of
@@ -490,13 +491,24 @@ public class GraphImpl<V> implements Graph<V>
       // Arraylist to hold the shortest path and be converted to an interable
       ArrayList<V> shortList = new ArrayList<V>();
 
+
+      System.out.println("from: " + from.toString());
+      System.out.println("to: " + to.toString());
+
+
       // If we are looking from a path to and from the same vertice, save some
       // work and just add the to and from vertices directly to the short list
+      if (!contains(from) || !contains(to))
+      {
+        Iterable<V> iterable = shortList;
+        return iterable;
+      }
       if (from.equals(to))
       {
         shortList.add(to);
         shortList.add(from);
       }
+      // If either of the vertices doesn't exist, don't bother doing a search
       else
       {
         // Queue to store yet-to-be-visited vertices
@@ -526,8 +538,6 @@ public class GraphImpl<V> implements Graph<V>
           // Traverse the element's adjacent vertices
           for (V adjVert : adjacentTo(element))
           {
-            // Add the parent/child pair to the mapping
-            neighborMap.put(adjVert, element);
             // Check if the vertex has been visited already
             if (!visited.contains(adjVert))
             {
@@ -535,22 +545,31 @@ public class GraphImpl<V> implements Graph<V>
               visited.add(adjVert);
               // Add to Queue
               queue.add(adjVert);
+
+              // Add the parent/child pair to the mapping
+              neighborMap.put(adjVert, element);
+              System.out.println(neighborMap.toString());
             }
           }
         }
 
-        V vertex = to;
-        while (neighborMap.get(to) != null)
+        if (!neighborMap.isEmpty())
         {
-          shortList.add(vertex);
-          vertex = neighborMap.get(vertex);
+          V vertex = to;
+          while (neighborMap.get(vertex) != null)
+          {
+            shortList.add(vertex);
+            vertex = neighborMap.get(vertex);
+          }
+          shortList.add(from);
+
+          Collections.reverse(shortList);
         }
       }
 
-
+      System.out.println(shortList.toString());
       Iterable<V> iterable = shortList;
       return iterable;
-
     }
 
     public String returnVertices()

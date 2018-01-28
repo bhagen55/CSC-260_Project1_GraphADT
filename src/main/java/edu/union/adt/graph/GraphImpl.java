@@ -538,6 +538,7 @@ public class GraphImpl<V> implements Graph<V>
             }
           }
         }
+
         V vertex = to;
         while (neighborMap.get(to) != null)
         {

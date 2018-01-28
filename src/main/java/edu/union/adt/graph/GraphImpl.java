@@ -445,7 +445,8 @@ public class GraphImpl<V> implements Graph<V>
      */
     public boolean hasPath(V from, V to)
     {
-      return false;
+      Iterable<v> path = getPath(from, to);
+
     }
 
     /**
@@ -570,5 +571,23 @@ public class GraphImpl<V> implements Graph<V>
       System.out.println(shortList.toString());
       Iterable<V> iterable = shortList;
       return iterable;
+    }
+
+    /**
+     * Returns the length of a interator by counting its elements
+     *
+     * @param container the iterable to be counted
+     * @return an integer representing the length of the iterable
+     */
+    private int iteratorLength(Iterable<String> container)
+    {
+      int length = 0;
+
+      for (String str: container)
+      {
+      length++;
+      }
+
+      return length;
     }
 }

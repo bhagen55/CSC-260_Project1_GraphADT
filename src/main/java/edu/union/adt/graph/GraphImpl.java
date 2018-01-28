@@ -490,7 +490,7 @@ public class GraphImpl<V> implements Graph<V>
         }
         else
         {
-          return length;
+          return length - 1;
         }
       }
     }
@@ -587,8 +587,19 @@ public class GraphImpl<V> implements Graph<V>
         }
       }
 
-      Iterable<V> iterable = shortList;
-      return iterable;
+      if (shortList.contains(to))
+      {
+        Iterable<V> iterable = shortList;
+        return iterable;
+      }
+      else
+      {
+        shortList = new ArrayList<V>();
+        Iterable<V> iterable = shortList;
+        return iterable;
+      }
+
+
 
     }
 

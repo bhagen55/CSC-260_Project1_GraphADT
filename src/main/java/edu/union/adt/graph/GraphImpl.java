@@ -445,7 +445,9 @@ public class GraphImpl<V> implements Graph<V>
      */
     public boolean hasPath(V from, V to)
     {
-      Iterable<v> path = getPath(from, to);
+      Iterable<V> path = getPath(from, to);
+
+      return iteratorLength(path);
 
     }
 
@@ -579,11 +581,11 @@ public class GraphImpl<V> implements Graph<V>
      * @param container the iterable to be counted
      * @return an integer representing the length of the iterable
      */
-    private int iteratorLength(Iterable<String> container)
+    private int iteratorLength(Iterable<V> container)
     {
       int length = 0;
 
-      for (String str: container)
+      for (V element: container)
       {
       length++;
       }

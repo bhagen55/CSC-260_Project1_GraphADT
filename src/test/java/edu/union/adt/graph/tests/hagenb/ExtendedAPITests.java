@@ -164,17 +164,17 @@ public class ExtendedAPITests
     g.addEdge("baloney", "ham");
 
     assertEquals("Path length to the same vertex is 0",
-                    g.pathLength("bar", "bar"));
+                    g.pathLength("bar", "bar"), 0);
 
     assertEquals("Path length to the same vertex is 0," +
                     " even if it has a self path",
                     g.pathLength("foo", "foo"), 0);
 
-    assertEquals("Path length between two vertices is 1",
-                    g.pathLength("foo", "bar"), 1);
+    assertEquals("Path length between two vertices is 2",
+                    g.pathLength("foo", "bar"), 2);
 
-    assertEquals("Path length between four vertices is 3",
-                    g.pathLength("foo", "ham"), 3);
+    assertEquals("Path length between four vertices is 4",
+                    g.pathLength("foo", "ham"), 4);
 
 
 
@@ -182,7 +182,7 @@ public class ExtendedAPITests
                     g.pathLength("ham", "baloney"), Integer.MAX_VALUE);
 
     assertEquals("Shortest length is chosen between vertices",
-                    g.pathLength("baloney", "bar"), 1);
+                    g.pathLength("baloney", "bar"), 2);
   }
 
   @Test

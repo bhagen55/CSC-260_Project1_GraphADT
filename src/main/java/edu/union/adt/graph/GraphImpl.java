@@ -571,15 +571,4 @@ public class GraphImpl<V> implements Graph<V>
       Iterable<V> iterable = shortList;
       return iterable;
     }
-
-    public String returnVertices()
-    {
-      return vertices.toString();
-    }
-
-    public String returnEdges()
-    {
-      return edges.toString();
-    }
-
 }
